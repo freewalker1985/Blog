@@ -17,10 +17,15 @@ class CommonView(ListView):
     allow_empty = True
 
 
+class IndexView(CommonView):
+    pass
+
+
 class ArticleListView(CommonView):
     """
     list类
     """
+
     def get_queryset(self):
         queryset = super(ArticleListView, self).get_queryset()
         queryset = queryset.filter(status='published')
@@ -68,7 +73,7 @@ class CategoryView(ListView):
 
     def get_queryset(self):
         category = get_object_or_404(Category, pk=self.kwargs['pk'])
-        return super(CategoryView,self).get_queryset().filter(category__name=category.name, status='published')
+        return super(CategoryView, self).get_queryset().filter(category__name=category.name, status='published')
 
 
 class TagView(CommonView):
@@ -93,4 +98,4 @@ def search(request):
         error_msg = "请输入关键字"
         return render(request, 'myblog/list.html', {'error_msg': error_msg})
     artlice_list = Article.objects.filter(Q(title__icontains=q) | Q(content__icontains=q))
-    return render(request, 'myblog/list.html', {'error_msg': error_msg, 'article_list':artlice_list})
+    return render(request, 'myblog/list.html', {'error_msg': error_msg, 'article_list': artlice_list})

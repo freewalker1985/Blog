@@ -30,6 +30,7 @@ class Article(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = '博客文章'
+        ordering = ['-create_time']
 
     def __str__(self):
         return self.title
