@@ -1,0 +1,40 @@
+{% extends "myblog/base.html" %}
+
+{% block title %}My Blog{% endblock %}
+
+{% block content %}
+
+    {% if error_msg %}
+        <p>{{ error_msg }}</p>
+    {% endif %}
+
+    {% for article in article_list %}
+        <article class="post post-1">
+            <header class="entry-header">
+                <h1 class="entry-title">
+                    <a href="{% url 'detail' article.id %}">{{ article.title }}</a>
+                </h1>
+                <div class="entry-meta">
+                    <span class="post-category"><a href="{% url 'category' article.category.id %}">分类：{{ article.category.name }}</a></span>
+
+                    <span class="post-tag">标签：{% for tag in article.tag.all %}<a href="{% url 'tag' tag.id %}">{{ tag.name }} </a>{% endfor %}</span>
+
+                    <span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">日期：{{ article.create_time }}</time></a></span>
+
+                    <span class="comments-link"><a href="#">评论：4 </a></span>
+                    <span class="views-count"><a href="#">阅读：{{ article.views }}</a></span>
+                </div>
+            </header>
+            <div class="entry-content clearfix">
+                <p>{{ article.desc }}</p>
+                <div class="read-more cl-effect-14">
+                    <a href="{% url 'detail' article.id %}" class="more-link">Continue reading <span class="meta-nav">→</span></a>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock %}
+
+{% block paginated %}
+    {% include "myblog/paginate.html" %}
+{% endblock %}

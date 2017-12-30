@@ -1,0 +1,29 @@
+
+{% extends 'myblog/base.html' %}
+{% load comments %}
+
+{% block title %}{{ article_detail.title }}{% endblock %}
+{% block content %}
+    <article class="post post-1">
+            <header class="entry-header">
+                <h1 class="entry-title">
+                    <a href="{% url 'detail' article_detail.id %}">{{ article_detail.title }}</a>
+                </h1>
+                <div class="entry-meta">
+                    <span class="post-category"><a href="#">Web Design</a></span>
+
+                    <span class="post-date"><a href="#"><time class="entry-date" datetime="2012-11-09T23:15:57+00:00">{{ article_detail.create_time }}</time></a></span>
+
+                    <span class="post-author"><a href="#">Albert Einstein</a></span>
+
+                    <span class="comments-link"><a href="#">4 Comments</a></span>
+                </div>
+            </header>
+            <div class="entry-content clearfix">
+                <p>{{ article_detail.content|safe}}</p>
+                <h2>Comments for {{ article_detail.title }}</h2>
+                {% render_comment_list for article_detail %}
+                {% render_comment_form for article_detail %}
+            </div>
+        </article>
+{% endblock %}
