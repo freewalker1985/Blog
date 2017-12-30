@@ -17,10 +17,6 @@ class CommonView(ListView):
     allow_empty = True
 
 
-class IndexView(CommonView):
-    pass
-
-
 class ArticleListView(CommonView):
     """
     list类

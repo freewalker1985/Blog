@@ -22,7 +22,7 @@ xadmin.autodiscover()
 urlpatterns = [
     url(r'xadmin/', include(xadmin.site.urls)),
     # url(r'^admin/', admin.site.urls),
-    url(r'^myblog/', include('myblog.urls')),
-    url(r'^comments/', include('django_comments.urls')),
+    url(r'', include('myblog.urls')),
+    url(r'', include('django_comments.urls')),
     url(r'^search/', include('haystack.urls')),
 ]
