@@ -1,2 +1,2 @@
 # Blog
-use djnaog, xadmin, django-contrib-comment,haystack
+use django, xadmin, django-contrib-comment,haystack
